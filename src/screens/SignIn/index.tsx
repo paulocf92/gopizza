@@ -5,7 +5,7 @@ import { Container } from './styles';
 
 export function SignIn() {
   return (
-    <Container style={{ alignItems: 'center', justifyContent: 'center' }}>
+    <Container>
       <Text>SignIn</Text>
     </Container>
   );
