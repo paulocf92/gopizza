@@ -1,15 +1,14 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 
 import theme from './src/theme';
 
+import { SignIn } from '@screens/SignIn';
+
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <View>
-        <Text>Hello World</Text>
-      </View>
+      <SignIn />
     </ThemeProvider>
   );
 }
