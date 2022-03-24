@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components/native';
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
 ]);
-
+import { AuthProvider } from '@hooks/auth';
 import theme from './src/theme';
 
 import { SignIn } from '@screens/SignIn';
@@ -18,7 +18,9 @@ export default function App() {
         translucent
         backgroundColor="transparent"
       />
-      <SignIn />
+      <AuthProvider>
+        <SignIn />
+      </AuthProvider>
     </ThemeProvider>
   );
 }
