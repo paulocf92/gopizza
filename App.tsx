@@ -5,6 +5,8 @@ import { ThemeProvider } from 'styled-components/native';
 import { AuthProvider } from '@hooks/auth';
 import theme from './src/theme';
 
+import { GestureHandler } from '@components/GestureHandler';
+
 import { SignIn } from '@screens/SignIn';
 
 LogBox.ignoreLogs([
@@ -13,15 +15,17 @@ LogBox.ignoreLogs([
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <StatusBar
-        barStyle="light-content"
-        translucent
-        backgroundColor="transparent"
-      />
-      <AuthProvider>
-        <SignIn />
-      </AuthProvider>
-    </ThemeProvider>
+    <GestureHandler>
+      <ThemeProvider theme={theme}>
+        <StatusBar
+          barStyle="light-content"
+          translucent
+          backgroundColor="transparent"
+        />
+        <AuthProvider>
+          <SignIn />
+        </AuthProvider>
+      </ThemeProvider>
+    </GestureHandler>
   );
 }
