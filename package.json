@@ -7,7 +7,9 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "clean-android": "cd android && ./gradlew clean && cd ../",
+    "adb": "adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
     "@react-native-firebase/app": "^14.5.1",
@@ -16,6 +18,7 @@
     "@react-native-firebase/storage": "^14.5.1",
     "react": "17.0.2",
     "react-native": "0.67.3",
+    "react-native-gesture-handler": "^2.3.2",
     "react-native-linear-gradient": "^2.5.6",
     "styled-components": "^5.3.3"
   },
