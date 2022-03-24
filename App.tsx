@@ -7,7 +7,7 @@ import theme from './src/theme';
 
 import { GestureHandler } from '@components/GestureHandler';
 
-import { SignIn } from '@screens/SignIn';
+import { Product } from '@screens/Product';
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
@@ -23,7 +23,7 @@ export default function App() {
           backgroundColor="transparent"
         />
         <AuthProvider>
-          <SignIn />
+          <Product />
         </AuthProvider>
       </ThemeProvider>
     </GestureHandler>
