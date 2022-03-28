@@ -6,6 +6,7 @@ import { useTheme } from 'styled-components/native';
 import happyEmoji from '@assets/images/happy.png';
 
 import { Search } from '@components/Search';
+import { ProductCard } from '@components/ProductCard';
 
 import {
   Container,
@@ -40,6 +41,15 @@ export function Home() {
         <Title>Cardápio</Title>
         <MenuItemsNumber>10 pizzas</MenuItemsNumber>
       </MenuHeader>
+
+      <ProductCard
+        data={{
+          id: '1',
+          name: 'Pizza',
+          description: 'Uma pizza',
+          photo_url: 'https://github.com/paulocf92.png',
+        }}
+      />
     </Container>
   );
 }
