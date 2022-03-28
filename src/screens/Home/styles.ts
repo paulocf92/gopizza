@@ -1,6 +1,9 @@
 import styled, { css } from 'styled-components/native';
+import { FlatList, FlatListProps } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+
+import { ProductProps } from '@components/ProductCard';
 
 export const Container = styled.View`
   flex: 1;
@@ -66,3 +69,16 @@ export const Title = styled.Text`
     color: ${theme.COLORS.SECONDARY_900};
   `}
 `;
+
+export const ProductList = styled(
+  FlatList as new (
+    props: FlatListProps<ProductProps>,
+  ) => FlatList<ProductProps>,
+).attrs({
+  contentContainerStyle: {
+    paddingTop: 20,
+    paddingBottom: 125,
+    marginHorizontal: 24,
+  },
+  showsVerticalScrollIndicator: false,
+})``;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, TouchableOpacity } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useTheme } from 'styled-components/native';
@@ -18,9 +18,11 @@ import {
   Title,
   MenuHeader,
   MenuItemsNumber,
+  ProductList,
 } from './styles';
 
 export function Home() {
+  const [pizzas, setPizzas] = useState<ProductProps[]>([]);
   const { COLORS } = useTheme();
 
   function fetchPizzas(value: string) {
@@ -40,7 +42,7 @@ export function Home() {
           };
         }) as ProductProps[];
 
-        console.log({ data });
+        setPizzas(data);
       })
       .catch(() =>
         Alert.alert('Consulta', 'Não foi possível realizar a consulta.'),
@@ -71,13 +73,10 @@ export function Home() {
         <MenuItemsNumber>10 pizzas</MenuItemsNumber>
       </MenuHeader>
 
-      <ProductCard
-        data={{
-          id: '1',
-          name: 'Pizza',
-          description: 'Uma pizza',
-          photo_url: 'https://github.com/paulocf92.png',
-        }}
+      <ProductList
+        data={pizzas}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => <ProductCard data={item} />}
       />
     </Container>
   );
