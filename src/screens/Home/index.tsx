@@ -3,6 +3,7 @@ import { Alert, TouchableOpacity } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useTheme } from 'styled-components/native';
 import firestore from '@react-native-firebase/firestore';
+import { useNavigation } from '@react-navigation/native';
 
 import happyEmoji from '@assets/images/happy.png';
 
@@ -24,7 +25,9 @@ import {
 export function Home() {
   const [pizzas, setPizzas] = useState<ProductProps[]>([]);
   const [search, setSearch] = useState('');
+
   const { COLORS } = useTheme();
+  const navigation = useNavigation();
 
   function fetchPizzas(value: string) {
     const formattedValue = value.toLowerCase().trim();
@@ -59,6 +62,10 @@ export function Home() {
     fetchPizzas('');
   }
 
+  function handleOpen(id: string) {
+    navigation.navigate('product', { id });
+  }
+
   useEffect(() => {
     fetchPizzas('');
   }, []);
@@ -91,7 +98,9 @@ export function Home() {
       <ProductList
         data={pizzas}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => <ProductCard data={item} />}
+        renderItem={({ item }) => (
+          <ProductCard data={item} onPress={() => handleOpen(item.id)} />
+        )}
       />
     </Container>
   );
