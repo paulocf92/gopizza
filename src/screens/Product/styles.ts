@@ -97,3 +97,7 @@ export const DescriptionInput = styled(Input).attrs({
 })`
   height: 80px;
 `;
+
+export const Invisible = styled.View`
+  width: 20px;
+`;

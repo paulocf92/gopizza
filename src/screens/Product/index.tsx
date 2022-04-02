@@ -21,6 +21,7 @@ import {
   DeleteLabel,
   Upload,
   PickImageButton,
+  Invisible,
   Form,
   Label,
   InputGroup,
@@ -116,6 +117,21 @@ export function Product() {
       .finally(() => setIsLoading(false));
   }
 
+  function handleDelete() {
+    firestore()
+      .collection('pizzas')
+      .doc(id)
+      .delete()
+      .then(() => {
+        storage()
+          .ref(photoPath)
+          .delete()
+          .then(() => {
+            navigation.navigate('home');
+          });
+      });
+  }
+
   function handleGoBack() {
     navigation.goBack();
   }
@@ -147,10 +163,12 @@ export function Product() {
 
           <Title>Cadastrar</Title>
 
-          {id && (
-            <TouchableOpacity>
+          {id ? (
+            <TouchableOpacity onPress={handleDelete}>
               <DeleteLabel>Deletar</DeleteLabel>
             </TouchableOpacity>
+          ) : (
+            <Invisible />
           )}
         </Header>
 

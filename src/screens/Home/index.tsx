@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Alert, TouchableOpacity } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useTheme } from 'styled-components/native';
 import firestore from '@react-native-firebase/firestore';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import happyEmoji from '@assets/images/happy.png';
 
@@ -71,9 +71,11 @@ export function Home() {
     navigation.navigate('product', {});
   }
 
-  useEffect(() => {
-    fetchPizzas('');
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchPizzas('');
+    }, []),
+  );
 
   return (
     <Container>
