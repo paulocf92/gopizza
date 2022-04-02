@@ -9,7 +9,6 @@ type ContainerProps = {
 
 export const Container = styled(RectButton)<ContainerProps>`
   flex: 1;
-  width: 100%;
   max-height: 56px;
   min-height: 56px;
   border-radius: 12px;
