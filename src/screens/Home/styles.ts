@@ -1,9 +1,13 @@
 import styled, { css } from 'styled-components/native';
 import { FlatList, FlatListProps } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import {
+  getBottomSpace,
+  getStatusBarHeight,
+} from 'react-native-iphone-x-helper';
 
 import { ProductProps } from '@components/ProductCard';
+import { Button } from '@components/Button';
 
 export const Container = styled.View`
   flex: 1;
@@ -82,3 +86,8 @@ export const ProductList = styled(
   },
   showsVerticalScrollIndicator: false,
 })``;
+
+export const NewProductButton = styled(Button)`
+  margin: 0 24px;
+  margin-bottom: ${getBottomSpace() + 12}px;
+`;

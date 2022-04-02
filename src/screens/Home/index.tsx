@@ -20,6 +20,7 @@ import {
   MenuHeader,
   MenuItemsNumber,
   ProductList,
+  NewProductButton,
 } from './styles';
 
 export function Home() {
@@ -66,6 +67,10 @@ export function Home() {
     navigation.navigate('product', { id });
   }
 
+  function handleAdd() {
+    navigation.navigate('product', {});
+  }
+
   useEffect(() => {
     fetchPizzas('');
   }, []);
@@ -101,6 +106,12 @@ export function Home() {
         renderItem={({ item }) => (
           <ProductCard data={item} onPress={() => handleOpen(item.id)} />
         )}
+      />
+
+      <NewProductButton
+        title="Cadastrar Pizza"
+        type="secondary"
+        onPress={handleAdd}
       />
     </Container>
   );

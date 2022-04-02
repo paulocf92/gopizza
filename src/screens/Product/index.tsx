@@ -3,7 +3,7 @@ import { Platform, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
 import { ProductNavigationProps } from '@src/@types/navigation';
 
@@ -48,6 +48,7 @@ export function Product() {
   const [priceSizeG, setPriceSizeG] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const navigation = useNavigation();
   const route = useRoute();
   const { id } = route.params as ProductNavigationProps;
 
@@ -115,6 +116,10 @@ export function Product() {
       .finally(() => setIsLoading(false));
   }
 
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   useEffect(() => {
     if (id) {
       firestore()
@@ -138,22 +143,26 @@ export function Product() {
     <Container behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Header>
-          <ButtonBack />
+          <ButtonBack onPress={handleGoBack} />
 
           <Title>Cadastrar</Title>
 
-          <TouchableOpacity>
-            <DeleteLabel>Deletar</DeleteLabel>
-          </TouchableOpacity>
+          {id && (
+            <TouchableOpacity>
+              <DeleteLabel>Deletar</DeleteLabel>
+            </TouchableOpacity>
+          )}
         </Header>
 
         <Upload>
           <Photo uri={image} />
-          <PickImageButton
-            title="Carregar"
-            type="secondary"
-            onPress={handlePickerImage}
-          />
+          {!id && (
+            <PickImageButton
+              title="Carregar"
+              type="secondary"
+              onPress={handlePickerImage}
+            />
+          )}
         </Upload>
 
         <Form>
@@ -192,11 +201,13 @@ export function Product() {
             />
           </InputGroup>
 
-          <Button
-            title="Cadastrar pizza"
-            isLoading={isLoading}
-            onPress={handleAdd}
-          />
+          {!id && (
+            <Button
+              title="Cadastrar pizza"
+              isLoading={isLoading}
+              onPress={handleAdd}
+            />
+          )}
         </Form>
       </ScrollView>
     </Container>
