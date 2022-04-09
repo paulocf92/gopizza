@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 
-import { Container, Header, BackButton } from './styles';
+import { Container, Header, BackButton, Photo } from './styles';
 
 export function Order() {
   return (
@@ -9,6 +9,7 @@ export function Order() {
       <Header>
         <BackButton onPress={() => {}} />
       </Header>
+      <Photo source={{ uri: 'https://github.com/paulocf92.png' }} />
     </Container>
   );
 }

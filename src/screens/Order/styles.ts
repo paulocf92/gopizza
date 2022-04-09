@@ -17,3 +17,12 @@ export const Header = styled(LinearGradient).attrs(({ theme }) => ({
 export const BackButton = styled(ButtonBack)`
   margin-bottom: 108px;
 `;
+
+export const Photo = styled.Image`
+  width: 240px;
+  height: 240px;
+  border-radius: 120px;
+  align-self: center;
+  position: relative;
+  top: -120px;
+`;
