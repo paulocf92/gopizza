@@ -27,18 +27,22 @@ import {
 } from './styles';
 
 type PizzaResponse = ProductProps & {
-  pizza_sizes: {
+  price_sizes: {
     [key: string]: number;
   };
 };
 
 export function Order() {
-  const [size, setSize] = useState('p');
+  const [size, setSize] = useState('');
   const [pizza, setPizza] = useState<PizzaResponse>({} as PizzaResponse);
+  const [quantity, setQuantity] = useState(0);
+  const [tableNumber, setTableNumber] = useState('');
 
   const navigation = useNavigation();
   const route = useRoute();
   const { id } = route.params as OrderNavigationProps;
+
+  const amount = size ? pizza.price_sizes[size] * quantity : '0,00';
 
   function handleGoBack() {
     navigation.goBack();
@@ -83,16 +87,19 @@ export function Order() {
           <FormRow>
             <InputGroup>
               <Label>Número da mesa</Label>
-              <Input keyboardType="numeric" />
+              <Input keyboardType="numeric" onChangeText={setTableNumber} />
             </InputGroup>
 
             <InputGroup>
               <Label>Quantidade</Label>
-              <Input keyboardType="numeric" />
+              <Input
+                keyboardType="numeric"
+                onChangeText={value => setQuantity(Number(value))}
+              />
             </InputGroup>
           </FormRow>
 
-          <Price>Valor de R$ 00,00</Price>
+          <Price>Valor de R$ {amount}</Price>
 
           <Button title="Confirmar pedido" />
         </Form>
