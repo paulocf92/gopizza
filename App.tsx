@@ -8,7 +8,7 @@ import theme from './src/theme';
 import { GestureHandler } from '@components/GestureHandler';
 
 import { Routes } from './src/routes';
-import { Order } from '@screens/Order';
+import { Orders } from '@screens/Orders';
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
@@ -24,7 +24,7 @@ export default function App() {
           backgroundColor="transparent"
         />
         <AuthProvider>
-          <Order />
+          <Orders />
         </AuthProvider>
       </ThemeProvider>
     </GestureHandler>
