@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native';
+import { FlatList, FlatListProps } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
@@ -22,3 +23,14 @@ export const Title = styled.Text`
     color: ${theme.COLORS.TITLE};
   `}
 `;
+
+export const OrderList = styled(
+  FlatList as new (props: FlatListProps<any>) => FlatList<any>,
+).attrs({
+  contentContainerStyle: {
+    paddingBottom: 125,
+    paddingHorizontal: 24,
+  },
+  showsVerticalScrollIndicator: false,
+  numColumns: 2,
+})``;

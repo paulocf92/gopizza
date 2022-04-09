@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { Container, Header, Title } from './styles';
+import { ItemSeparator } from '@components/ItemSeparator';
+import { OrderCard } from '@components/OrderCard';
+
+import { Container, Header, Title, OrderList } from './styles';
 
 export function Orders() {
   return (
@@ -8,6 +11,13 @@ export function Orders() {
       <Header>
         <Title>Pedidos feitos</Title>
       </Header>
+
+      <OrderList
+        data={['1', '2', '3']}
+        keyExtractor={item => item}
+        renderItem={({ index }) => <OrderCard index={index} />}
+        ItemSeparatorComponent={() => <ItemSeparator />}
+      />
     </Container>
   );
 }
